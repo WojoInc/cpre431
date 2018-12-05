@@ -5,11 +5,32 @@
     <title>Spectre JS PoC</title>
 </head>
 <body>
-<pre id="progress"></pre>
-
 <div id="banner"></div>
-<script src="tencent.js"></script>
+<div><p>
+    Copy this to a new tab to enable/disable SharedArrayBuffer support:
+    <strong>chrome://flags/#SharedArrayBuffer</strong><br>
+    Chrome won't let us link you there :(
+    </p>
+</div>
+<script src="spectre.js"></script>
 <script src="worker.js"></script>
-<script>main()</script>
+<label for="cache-size">Cache Size: </label><select id="cache-size">
+    <option id="8">8</option>
+    <option id="12">12</option>
+    <option id="16">16</option>
+    <option id="32">32</option>
+    <option id="64">64</option>
+    <option id="128">128</option>
+</select>
+<label for="hit-ratio">Hit Ratio (%): </label><input id="hit-ratio" maxlength="2" type="text" value="2">
+<br>
+<label>
+    String to test with:
+    <input type="text" id="test-string" name="test-string">
+</label>
+<button id="exploit" name="exploit" onclick=main()>Exploit</button>
+<br>
+<pre id="progress"></pre>
+<button id="clear" onclick="clearOutput()">Clear Results</button>
 </body>
 </html>
